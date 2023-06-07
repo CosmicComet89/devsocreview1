@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="welcome copy.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+
+        <li><a href="#" style="color:#fff0ef;font-size: 20px;">Buy</a></li>
+        <li><a href="#" style="color:#fff0ef;font-size: 20px;">Sell</a></li>
+        <li><a href="h.html" style="color:#fff0ef;font-size: 20px;">Sign In</a></li>
+        <li><a href="index.html" style="color:#fff0ef;font-size: 20px;">Sign Up</a></li>
+
+
+    </nav>
+    <div class="logo" style="color:#fff0ef">Collegethrift.in</div>
+    <div>
+    </div>
+    <div id = "authForm"></div>
+
+    <h1>Login</h1>
+    <p>Please Enter your login details</p>
+    
+    <form autocomplete="on">
+      <fieldset>
+        
+        <label for="email">Enter Your Email: <input id="email" name="email" type="email" required /></label>
+        <label for="password">Create a New Password: <input id="password" name="password" type="password" autocomplete=":on" required /></label>
+      </fieldset>
+      
+     
+        
+      
+      <button id="signup_button" >Sign in</button>
+      
+    </form>
+    <div class="sidebar2">
+      <img src="undraw_cat_epte.svg">
+  </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h4>Contact Us</h4>
+            <ul class="contact-info">
+              <li style="align-items: left;"><i class="fa fa-map-marker"></i> 123 Main Street, City, Country</li>
+              <li><i class="fa fa-envelope"></i> info@example.com</li>
+              <li><i class="fa fa-phone"></i> +1234567890</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h4>Customer Service</h4>
+            <ul class="customer-service" style="text-align: left;">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Shipping &amp; Returns</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div>
+              <p style="color: white;text-align: center;size:20px;">copyright @2023</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+ 
+</html>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+  import {
+          getAuth,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          onAuthStateChanged,
+          signOut
+      //Update the below URL with the appropriate version if necessary.
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+getDatabase,
+ref,
+set,
+child, 
+update,
+remove
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDQWuWixLIpj1dLxqLQ5oSXRpc5Ve-PGlw",
+    authDomain: "chat-room-devsoc.firebaseapp.com",
+    databaseURL: "https://chat-room-devsoc-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "chat-room-devsoc",
+    storageBucket: "chat-room-devsoc.appspot.com",
+    messagingSenderId: "694524010159",
+    appId: "1:694524010159:web:357d42c76e44d98cee7e5a",
+    measurementId: "G-9G6NQD2ZXY"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  const database = getDatabase(app);
+  const usersRef = ref(database,'users/');
+
+  
+
+      const email = document.querySelector("#email");
+      const authForm = document.querySelector("#authForm");
+      const password= document.querySelector("#password");
+      
+      
+      const signin_button = document.querySelector("#signin_button");
+      
+
+      
+     
+      
+signin_button.addEventListener('click', function (event) {
+  event.preventDefault();
+ 
+      const email = document.querySelector("#email").value;
+      const authForm = document.querySelector("#authForm").value;
+      const password= document.querySelector("#password").value;
+      
+     
+      const signin_button = document.querySelector("#signin_button").value;
+      
+     
+  
+  
+  console.log("Hi");
+
+
+  signInWithEmailAndPassword(auth, email, password)
+  
+  .then((userCredential) => {
+    const user = userCredential.user;
+    
+    
+
+    
+    console.log(user);
+    alert("You have logged in Successfully!");
+    window.location.href = "finalhome.html";
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    alert("Enter correct credentials")
+  });
+});
+
+
+
+
+
+</script>
+     
+    </body>
+   
+  </html>
